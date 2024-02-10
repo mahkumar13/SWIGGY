@@ -6,6 +6,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Body from './Components/Body';
 import ContactUs from './Components/ContactUs';
+import NotFound from './Components/NotFound';
+import AboutUs from './Components/AboutUs';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const appRouter = createBrowserRouter([
@@ -20,8 +22,13 @@ const appRouter = createBrowserRouter([
       {
         path:"/contact",
         element:<ContactUs></ContactUs>
+      },
+      {
+        path:"/about",
+        element:<AboutUs></AboutUs>
       }
-    ]
+    ],
+    errorElement:<NotFound></NotFound>
   }
 ])
 root.render(
