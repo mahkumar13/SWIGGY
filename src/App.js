@@ -5,7 +5,7 @@ import Body from './Components/Body';
 
 function App() {
   return (
-    <div className=" text-center text-4xl">
+    <div className=" text-2xl">
      <Header></Header>
      <Body></Body>
      <Footer></Footer>
