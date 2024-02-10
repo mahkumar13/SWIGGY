@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ResturantCard from './ResturantCard'
+import Shimmer from './Shimmer'
 
 const Body = () => {
   const [listOfResturant,setListOfResturant]= useState([])
@@ -12,8 +13,22 @@ const Body = () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6058005&lng=77.3877076&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json =  await data.json()
      console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-    setListOfResturant(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-    setFilterList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+    setListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFilterList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+  if(listOfResturant.length===0){
+    return(
+      <div className='flex flex-wrap justify-between'>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+        <Shimmer></Shimmer>
+      </div>
+    )
   }
   return (
     <>
@@ -25,6 +40,9 @@ const Body = () => {
     }}
     >
       Top Rated Resturant</button>
+      <button className='rounded-lg m-2 p-2 cursor-pointer bg-blue-400'
+       onClick={()=>{}}
+      >Go </button>
   </div>
     <div className=' flex m-2 justify-between mx-3 flex-wrap rounded-lg bg-neutral-200'>
      

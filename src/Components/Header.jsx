@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { Header_logo_url } from '../utils/Constants'
 const Header = () => {
   return (
@@ -11,9 +12,9 @@ const Header = () => {
       </div>
       <div className='flex items-center' >
         <ul className='flex font-bold mx-3 text-pink-900 text-4xl' >
-            <li className='mx-2  '> Home</li>
+            <li className='mx-2  '> <Link to="/">Home</Link></li>
             <li className='mx-2 '>About</li>
-            <li className='mx-2'> Contact </li>
+            <li className='mx-2'> <Link to="/contact">ContactUs</Link> </li>
             <li className='mx-2'></li>
         </ul>
       </div>
