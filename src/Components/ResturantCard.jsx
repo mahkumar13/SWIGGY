@@ -6,7 +6,7 @@ const ResturantCard = ({resturant}) => {
   const data= resturant.info
     //  {destructure on fly }
   return (
-    <div className="m-4 p-4 w-[280px] h-[475px]  border border-red-900 rounded-lg bg-slate-200 hover:bg-pink-200">
+    <div className="m-4 p-4 w-[280px] h-[475px]  border border-red-900 rounded-lg bg-slate-200transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-yellow-200 duration-300 ">
         <img className="rounded-lg w-[250px] h-[200px]" 
         src={CDN_URL +
         data.cloudinaryImageId}

@@ -1,11 +1,11 @@
 import React from 'react'
-
+import { Header_logo_url } from '../utils/Constants'
 const Header = () => {
   return (
     <div  className='bg-cyan-300 flex justify-between border-teal-300'>
       <div>
         <img className='w-32'
-        src='https://png.pngtree.com/png-vector/20220708/ourmid/pngtree-fast-food-logo-png-image_5763171.png'
+        src={Header_logo_url}
         alt='logo '
         ></img>
       </div>
