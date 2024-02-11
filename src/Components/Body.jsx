@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from 'react'
 import ResturantCard from './ResturantCard'
 import Shimmer from './Shimmer'
-import { RESTURANT_LIST_URL } from '../utils/Constants'
 import { Link } from 'react-router-dom'
+import useResturantList from '../Hooks/useResturantList'
+import { useState } from 'react'
 
 const Body = () => {
-  const [listOfResturant,setListOfResturant]= useState([])
-  const [filterList,setFilterList]=useState([])
-  const [searchText,setSearchText]=useState("")
-  useEffect(()=>{
-        fetchData()
-  },[])
-
-  const fetchData= async()=>{
-    const data = await fetch(RESTURANT_LIST_URL);
-    const json =  await data.json()
-    // console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-    setListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    setFilterList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-  }
+  // used custom hook for getting resturant list 
+  const[listOfResturant,filterList]=  useResturantList()
+  const [searchText,setSearchText,setFilterList]=useState("")
+  
   if(listOfResturant.length===0){
     return(
       <div className='flex flex-wrap justify-between'>
