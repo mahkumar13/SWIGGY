@@ -8,6 +8,7 @@ import Body from './Components/Body';
 import ContactUs from './Components/ContactUs';
 import NotFound from './Components/NotFound';
 import AboutUs from './Components/AboutUs';
+import ResturantMenu from './Components/ResturantMenu';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const appRouter = createBrowserRouter([
@@ -26,7 +27,12 @@ const appRouter = createBrowserRouter([
       {
         path:"/about",
         element:<AboutUs></AboutUs>
+      },
+      {
+        path:"/resturant/:resId",
+        element:<ResturantMenu></ResturantMenu>
       }
+
     ],
     errorElement:<NotFound></NotFound>
   }

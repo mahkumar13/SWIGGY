@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ResturantCard from './ResturantCard'
 import Shimmer from './Shimmer'
 import { RESTURANT_LIST_URL } from '../utils/Constants'
+import { Link } from 'react-router-dom'
 
 const Body = () => {
   const [listOfResturant,setListOfResturant]= useState([])
@@ -80,7 +81,9 @@ const Body = () => {
     <div className=' flex m-2 justify-between mx-3 flex-wrap rounded-lg bg-neutral-200'>
       {
       filterList?.map((res)=>(
-        <ResturantCard key={res.info.id} resturant={res}></ResturantCard>
+        <Link to={'/resturant/'+res.info.id} key={res.info.id}>
+        <ResturantCard  resturant={res}></ResturantCard>
+        </Link>
       ))}
 
     </div>
