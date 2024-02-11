@@ -8,7 +8,7 @@ function App() {
     <div className=" text-2xl">
      <Header></Header>
      <Outlet></Outlet>
-     <Footer></Footer>
+     {/* <Footer></Footer> */}
     </div>
   );
 }

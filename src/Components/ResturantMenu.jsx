@@ -9,7 +9,11 @@ const ResturantMenu = () => {
     const resInfo= useResturantMenu(resId)
 
     if(resInfo===null){
-        return <Shimmer></Shimmer>
+        return (
+            <div className='m-2 w-auto text-center'>
+        <Shimmer></Shimmer>
+        </div>
+        )
     }
     const {name,cuisines,costForTwoMessage,avgRating,cloudinaryImageId}= resInfo?.cards[0]?.card?.card?.info
     const {itemCards}= resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card

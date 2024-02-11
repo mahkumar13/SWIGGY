@@ -1,14 +1,30 @@
-import ResturantCard from './ResturantCard'
+import React, { useEffect, useState } from 'react'
+import ResturantCard, { WithOpenLabel } from './ResturantCard'
 import Shimmer from './Shimmer'
+import { RESTURANT_LIST_URL } from '../utils/Constants'
 import { Link } from 'react-router-dom'
-import useResturantList from '../Hooks/useResturantList'
-import { useState } from 'react'
+import useOnlineStatus from '../Hooks/useOnlineStatus'
 
 const Body = () => {
-  // used custom hook for getting resturant list 
-  const[listOfResturant,filterList]=  useResturantList()
-  const [searchText,setSearchText,setFilterList]=useState("")
-  
+  const [listOfResturant,setListOfResturant]= useState([])
+  const [filterList,setFilterList]=useState([])
+  const [searchText,setSearchText]=useState("")
+  const onlineStatus= useOnlineStatus();
+  const WithTopRatedResturant= WithOpenLabel(ResturantCard)
+  useEffect(()=>{
+        fetchData()
+  },[])
+
+  const fetchData= async()=>{
+    const data = await fetch(RESTURANT_LIST_URL);
+    const json =  await data.json()
+    // console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+    setListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFilterList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+  if(onlineStatus===false){
+    return <h1>Looks Like You are OffLine</h1>
+  }
   if(listOfResturant.length===0){
     return(
       <div className='flex flex-wrap justify-between'>
@@ -72,7 +88,9 @@ const Body = () => {
       {
       filterList?.map((res)=>(
         <Link to={'/resturant/'+res.info.id} key={res.info.id}>
-        <ResturantCard  resturant={res}></ResturantCard>
+          {res.info.isOpen ?(<WithTopRatedResturant resList={res}></WithTopRatedResturant>):
+          (<ResturantCard resList={res}></ResturantCard>)
+          }
         </Link>
       ))}
 
